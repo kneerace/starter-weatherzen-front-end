@@ -10,6 +10,8 @@ const [observation, setObservation] = useState({
   latitude: "", 
   longitude:"",
   sky_condition:"",
+  air_temperature:"",
+  air_temperature_unit:"",
 });
 const [error, setError] = useState(null);
 
@@ -29,7 +31,8 @@ function cancelHandler() {
 function changeHandler({ target: { name, value}}){
   setObservation((previousObservation)=>({
     ...previousObservation, [name]: value,
-  }))
+  }));
+  // console.log("::::::", observation)
 }
 
   return (
@@ -64,6 +67,26 @@ function changeHandler({ target: { name, value}}){
             />
             <small className="form-text text-muted">Enter a value between -180 and 180.</small>
           </div>
+          
+          <div className="col-6">
+            <label className="form-label" htmlFor="air_temperature">Air Temperature</label>
+            <input className="form-control" id="air_temperature" name="air_temperature" type="number" 
+            max={observation.air_temperature_unit === 'F'? "224" : observation.air_temperature_unit === 'C' ?"107" : "required Unit"} 
+            min= {observation.air_temperature_unit === 'F'? "-60" : observation.air_temperature_unit === 'C' ?"-50" : "required Unit"} 
+            value={observation.air_temperature} onChange={changeHandler} required= {true}>
+            </input>
+          </div>
+        
+          <div className="col-6">
+            <label className="form-label" htmlFor="air_temperature_unit">Air Temperature Unit</label>
+            <select className="form-control" id="air_temperature_unit" name="air_temperature_unit" 
+              value={observation.air_temperature_unit} onChange={changeHandler} required={true}>
+              <option value="" >Select an Option for Unit</option>
+              <option value="F" >Fahrenheit</option>
+              <option value="C">Celcius</option>
+            </select>
+          </div>
+
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="cloudCover">

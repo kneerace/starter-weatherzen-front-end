@@ -21,6 +21,8 @@ function Home() {
         <td>{observation.latitude}</td>
         <td>{observation.longitude}</td>
         <td>{observation.sky_condition}</td>
+        <td>{observation.air_temperature}</td>
+        <td>{observation.air_temperature_unit}</td>
         <td>{observation.created_at}</td>
     </tr>
   ))
@@ -36,6 +38,8 @@ function Home() {
             <th scope = "col">latitude</th>
             <th scope = "col">Longitude</th>
             <th scope = "col">Sky Condition</th>
+            <th scope = "col">Air Temp.</th>
+            <th scope = "col">Air Temp. Unit</th>
             <th scope = "col">Created</th>
           </tr>
         </thead>
